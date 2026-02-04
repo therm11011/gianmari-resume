@@ -9,7 +9,7 @@ let unsub: (() => void)[] = [];
 </script>
 <template>
     <div class="flex flex-col gap-6">
-        <h2 class="text-2xl">REFERENCESgit a</h2>
+        <h2 class="text-2xl">REFERENCES</h2>
         <div class="flex gap-6">
             <div v-for="value in references.data.value">
                 <p>{{ value.name }}</p>
