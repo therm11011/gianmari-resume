@@ -8,13 +8,15 @@ const references = useConvexQuery(api.resume.getReferences);
 let unsub: (() => void)[] = [];
 </script>
 <template>
-    <div class="flex gap-6">
-        <div v-for="value in references.data.value">
-            <p>{{ value.name }}</p>
-            <p>{{ value.jobTitle }}</p>
-            <p>{{ value.company }}</p>
-            <p>{{ value.contactInfo }}</p>
+    <div class="flex flex-col gap-6">
+        <h2 class="text-2xl">REFERENCESgit a</h2>
+        <div class="flex gap-6">
+            <div v-for="value in references.data.value">
+                <p>{{ value.name }}</p>
+                <p>{{ value.jobTitle }}</p>
+                <p>{{ value.company }}</p>
+                <p>{{ value.contactInfo }}</p>
+            </div>
         </div>
-        
     </div>
 </template>

@@ -8,10 +8,13 @@ const education = useConvexQuery(api.resume.getEducation);
 let unsub: (() => void)[] = [];
 </script>
 <template>
-    <div v-for="value in education.data.value">
-        <p>{{ value.degree }}</p>
-        <p>{{ value.startDate }} - {{ value.endDate }}</p>
-        <p>{{ value.institution }}</p>
-        <p>{{ value.description }}</p>
+    <div class="flex flex-col gap-6">
+        <h2 class="text-2xl">EDUCATION</h2>
+        <div v-for="value in education.data.value">
+            <p>{{ value.degree }}</p>
+            <p>{{ value.startDate }} - {{ value.endDate }}</p>
+            <p>{{ value.institution }}</p>
+            <p>{{ value.description }}</p>
+        </div>
     </div>
 </template>

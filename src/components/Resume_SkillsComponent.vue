@@ -8,7 +8,10 @@ const skills = useConvexQuery(api.resume.getSkills);
 let unsub: (() => void)[] = [];
 </script>
 <template>
-    <div v-for="value in skills.data.value">
-        <p>{{ value.name }}</p>
+    <div class="flex flex-col gap-6">
+        <h2 class="text-2xl">SKILLS</h2>
+        <div v-for="value in skills.data.value">
+            <p>{{ value.name }}</p>
+        </div>
     </div>
 </template>

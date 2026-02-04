@@ -8,6 +8,7 @@ const experiences = useConvexQuery(api.resume.getExperiences);
 </script>
 <template>
     <div class="flex flex-col gap-6">
+        <h2 class="text-2xl">EXPERIENCES</h2>
         <div v-for="value in experiences.data.value">
             <p>{{ value.title }}</p>
             <p>{{ value.company }}</p>
