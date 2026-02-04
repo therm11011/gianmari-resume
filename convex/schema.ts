@@ -5,9 +5,11 @@ export default defineSchema({
     profile: defineTable({
         name: v.string(),
         title: v.string(),
+        number: v.string(),
         summary: v.string(),
         email: v.string(),
         location: v.string(),
+        links: v.array(v.string()),
     }).index("byName", ["name"]),
 
     education: defineTable({
@@ -17,8 +19,8 @@ export default defineSchema({
         startDate: v.string(),
         endDate: v.string(),
         description: v.string(),
-    }),
-    
+    }).index("byInstitution", ["institution"]),
+
     experience: defineTable({
         company: v.string(),
         location: v.string(),
@@ -27,22 +29,33 @@ export default defineSchema({
         startDate: v.string(),
         endDate: v.string(),
         description: v.string(),
-    }),
+    }).index("byCompany", ["company"]),
 
     skills: defineTable({
         name: v.string(),
-        yearsOfExperience: v.number(),
-    }).index("byName", ["name"]),
+        skillType: v.string(),
+    }).index("bySkillType", ["skillType"]),
 
     projects: defineTable({
-        name: v.string(),
+        title: v.string(),
+        projectType: v.string(),
+        projectFor: v.string(),
         description: v.string(),
         link: v.string(),
-    }).index("byName", ["name"]),
+    }).index("byTitle", ["title"]),
 
+    certifications: defineTable({
+        title: v.string(),
+        companyIssuer: v.string(),
+        dateIssued: v.string(),
+        dateExpiry: v.string(),
+        link: v.string(),
+    }).index("byTitle", ["title"]),
+    
     references: defineTable({
         name: v.string(),
         jobTitle: v.string(),
+        company: v.string(),
         contactInfo: v.string(),
     }).index("byName", ["name"]),
 });
