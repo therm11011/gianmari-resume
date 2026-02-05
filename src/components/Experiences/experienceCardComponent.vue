@@ -25,7 +25,7 @@ defineProps<{
         <img
             src="/assets/icons/orgs/nocs.png"
             alt=""
-            class="absolute invert right-0 bottom-0 w-60 opacity-50 pointer-events-none"
+            class="absolute invert right-0 -bottom-2 w-60 opacity-50 pointer-events-none"
             
         />
         </div>
