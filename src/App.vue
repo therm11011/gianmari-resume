@@ -10,25 +10,13 @@ import Resume_ReferencesComponent from "./components/Resume_ReferencesComponent.
 </script>
 
 <template>
-    <div class="flex flex-col">
-      <div class="bg-gray-100 p-15">
-         <Resume_ProfileComponent />
-      </div>
-      <div class="bg-sky-100 p-15">
+    <div class="min-h-screen w-full flex flex-col dark:bg-[#0A2647] dark:text-white">
+        <Resume_ProfileComponent />
         <Resume_ExperiencesComponent />
-      </div>
-      <div class="bg-sky-200 p-15">
         <Resume_EducationComponent />
-      </div>
-      <div class="bg-gray-100 p-15">
         <Resume_SkillsComponent />
-      </div>
-      <div class="bg-sky-100 p-15">
         <Resume_ProjectsComponent />
-      </div>
-      <div class="bg-sky-100 p-15">
         <Resume_ReferencesComponent />
-      </div>
     </div>
 </template>
 
