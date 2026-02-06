@@ -29,7 +29,7 @@ export default defineSchema({
         startDate: v.string(),
         endDate: v.string(),
         description: v.string(),
-    }).index("byCompany", ["company"]),
+    }).index("by_unique_experience", ["company", "title", "startDate"]),
 
     skills: defineTable({
         name: v.string(),

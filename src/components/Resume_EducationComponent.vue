@@ -5,7 +5,6 @@ import { api } from "../../convex/_generated/api"
 
 const education = useConvexQuery(api.resume.getEducation);
 
-let unsub: (() => void)[] = [];
 </script>
 <template>
     <div class="flex flex-col gap-6">

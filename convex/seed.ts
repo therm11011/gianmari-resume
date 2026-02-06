@@ -3,7 +3,17 @@ import { mutation } from "./_generated/server";
 export const seedProfile = mutation({
   args: {},
   handler: async (ctx) => {
+    const existingProfile = await ctx.db
+      .query("profile")
+      .first();
+
+    if (existingProfile) {
+      // Already seeded → skip
+      return;
+    }
+
     await ctx.db.insert("profile", {
+        
       name: "Gian Mari Ramos",
       title: "Web Developer",
       number: "+639398239105",
@@ -32,35 +42,62 @@ export const seedEducation = mutation({
 export const seedExperience = mutation({
   args: {},
   handler: async (ctx) => {
-    await ctx.db.insert("experience", {
-        company: "Advanced World Solutions",
-        location: "Alabang, Muntinlupa",
-        title: "Jr. R&D Engineer",
-        jobType: "Full-time",
-        startDate: "July 2023",
-        endDate: "September 2023",
-        description: "Exposed to IT Fundamentals and Nihonggo Languages",
-    });
+        const experiences = [
+        {
+            company: "College of Computer Studies",
+            location: "Naga City, Camarines Sur",
+            title: "Front-End Developer",
+            jobType: "Intern",
+            startDate: "June 2022",
+            endDate: "July 2022",
+            description: "Designed and Implemented Front-end components of Gamification of Academic Programs.",
+        },
+            {
+            company: "Advanced World Solutions",
+            location: "Alabang, Muntinlupa",
+            title: "Jr. R&D Engineer",
+            jobType: "Full-time",
+            startDate: "July 2023",
+            endDate: "September 2023",
+            description: "Exposed to IT Fundamentals and Nihonggo Languages",
+        },
+        {
+            company: "Ateneo de Naga University",
+            location: "Naga City, Camarines Sur",
+            title: "Voluntary Network/IT Staff",
+            jobType: "Voluntary",
+            startDate: "January 2024",
+            endDate: "May 2024",
+            description:
+            "Volunteered in the office of Networks and Communications to expand my knowledge of the industry and also absorb the ethics of a workplace. Was trained to troubleshoot networks, telephones to different departments within the campus. Also, taught to configure and deploy different devices.",
+        },
+        {
+            company: "Provincial Government of Camarines Sur",
+            location: "Pili, Camarines Sur",
+            title: "Computer Instructor/Unity Game Programmer",
+            jobType: "Contract of Service",
+            startDate: "July 2024",
+            endDate: "Present",
+            description:
+            "Exposed to different game applications of Unity Game Engine and C# Programming. Also created different learning modules for game development. Also exposed to web development and quality assurance of different systems with different frameworks.",
+        },
+        ];
 
-    await ctx.db.insert("experience", {
-        company: "Ateneo de Naga University",
-        location: "Naga City, Camarines Sur",
-        title: "Voluntary Network/IT Staff",
-        jobType: "Voluntary",
-        startDate: "January 2024",
-        endDate: "May 2024",
-        description: "Volunteered in the office of Networks and Communications to expand my knowledge of the industry and also absorb the ethics of a workplace. Was trained to troubleshoot networks, telephones to different departments within the campus. Also, taught to configure and deploy different devices.",
-    });
+        for (const exp of experiences) {
+            const exists = await ctx.db
+            .query("experience")
+            .withIndex("by_unique_experience", q =>
+                q
+                .eq("company", exp.company)
+                .eq("title", exp.title)
+                .eq("startDate", exp.startDate)
+            )
+            .first();
 
-    await ctx.db.insert("experience", {
-        company: "Provincial Government of Camarines Sur",
-        location: "Pili, Camarines Sur",
-        title: "Computer Instructor/Unity Game Programmer",
-        jobType: "Contract of Service",
-        startDate: "July 2024",
-        endDate: "Present",
-        description: "Exposed to different game applications of Unity Game Engine and C# Programming. Also created different learning modules for game development. Also exposed to web development and quality assurance of different systems with different frameworks.",
-    });
+            if (!exists) {
+            await ctx.db.insert("experience", exp);
+            }
+        }
     },
 });
 
