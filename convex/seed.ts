@@ -28,14 +28,49 @@ export const seedProfile = mutation({
 export const seedEducation = mutation({
     args: {},
     handler: async (ctx) => {
-        await ctx.db.insert("education", {
-            institution: "Ateneo de Naga University",
-            degree: "Bachelor of Science in Computer Science",
-            fieldOfStudy: "Computer Science",
-            startDate: "June 2018",
-            endDate: "June 2023",
-            description: "Focused on different technological approaches in Web development and Natural Language Processing.",
-        });
+        const educations = [
+            {
+                institution: "Ateneo de Naga University",
+                degree: "",
+                fieldOfStudy: "Junior High School",
+                startDate: "June 2012",
+                endDate: "March 2016",
+                description: "",
+            },
+            {
+                institution: "Ateneo de Naga University",
+                degree: "Science, Technology, Engineering, and Mathematics",
+                fieldOfStudy: "Senior High School",
+                startDate: "June 2016",
+                endDate: "March 2018",
+                description: "",
+            },
+            {
+                institution: "Ateneo de Naga University",
+                degree: "Bachelor of Science in Computer Science",
+                fieldOfStudy: "College",
+                startDate: "June 2018",
+                endDate: "June 2023",
+                description: "Focused on different technological approaches in Web development and Natural Language Processing.",
+            }
+
+        ]
+
+        for (const edu of educations) {
+            const exists = await ctx.db
+            .query("education")
+            .withIndex("by_unique_education", q =>
+                q
+                .eq("institution", edu.institution)
+                .eq("degree", edu.degree)
+                .eq("startDate", edu.startDate)
+            )
+            .first();
+
+            if (!exists) {
+            await ctx.db.insert("education", edu);
+            }
+        }
     }
 });
 
@@ -104,99 +139,147 @@ export const seedExperience = mutation({
 export const seedSkills = mutation({
     args: {},
     handler: async (ctx) => {
-        await ctx.db.insert("skills", {
-            name: "Game Development",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Web Development",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Natural Language Processing(Chatbot) Development",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Google Workspace",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "MS Office Suite",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "JavaScript",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Programming Languages(C#, PHP, Python)",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Frameworks(Flask, Laravel)",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "CSS Framework(Tailwind)",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Game Engines(Unity)",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Basic Management and  Troubleshooting(Computers, Networks, and Telephones)",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "Manual Testing(Black box and White box)",
-            skillType: "technical"
-        });
-        await ctx.db.insert("skills", {
-            name: "API Validation tools(Postman)",
-            skillType: "technical"
-        });
+        const technicalSkills = [
+            {
+                name: "Game and Web Development",
+                skillType: "technical"
+            },
+            {
+                name: "Natural Language Processing(Chatbot) Development",
+                skillType: "technical"
+            },
+            {
+                name: "Google Workspace and MS Office Suite",
+                skillType: "technical"
+            },
+            {
+                name: "Programming Languages",
+                skillType: "technical"
+            },
+            {
+                name: "Frameworks",
+                skillType: "technical"
+            },
+            {
+                name: "Game Engines",
+                skillType: "technical"
+            },
+            {
+                name: "Computer Management and Troubleshooting",
+                skillType: "technical"
+            },
+            {
+                name: "Software Testing",
+                skillType: "technical"
+            },
+            {
+                name: "Other Tools",
+                skillType: "technical"
+            },
+        ]   
+        const softSkills = [
+            {
+                name: "Organization & Time Management",
+                skillType: "soft"
+            },
+            {
+                name: "Versatility & Adaptability",
+                skillType: "soft"
+            },
+            {
+                name: "Communication & Collaboration",
+                skillType: "soft"
+            },
+            {
+                name: "Problem-Solving & Critical Thinking",
+                skillType: "soft"
+            },
+        ]
+        for (const skills of technicalSkills) {
+            const exists = await ctx.db
+            .query("skills")
+            .withIndex("bySkillType", q =>
+                q
+                .eq("skillType", skills.name)
+            )
+            .first();
+
+            if (!exists) {
+            await ctx.db.insert("skills", skills);
+            }
+        }
+
+        for (const skills of softSkills) {
+            const exists = await ctx.db
+            .query("skills")
+            .withIndex("bySkillType", q =>
+                q
+                .eq("skillType", skills.name)
+            )
+            .first();
+
+            if (!exists) {
+            await ctx.db.insert("skills", skills);
+            }
+        }
     }
 });
 
 export const seedProjects = mutation({
     args: {},
     handler: async (ctx) => {
-        await ctx.db.insert("projects", {
-            title: "Gamification of Academic Programs",
-            projectType: "Virtual Internship",
-            projectFor: "Ateneo de Naga University: College of Computer Studies",
-            description: "Assigned to lead the Front-end Development Team to design and develop a web application for Gamification of Academic Programs. Also engage with the different committees(Back-end, Design Team) to share insights of the project.",
-            link: "",
-        });
-        await ctx.db.insert("projects", {
-            title: "Goldy: An NLP Application Chatbot in English Subject for Primary Education",
-            projectType: "Senior Thesis",
-            projectFor: "Ateneo de Naga University",
-            description: "Goldy is a chatbot designed to help elementary students in their English subject. Implemented an NLP Neural-Network using Python as the main programming language and showcased it as a web application using Flask and TailwindCSS. Assigned to train the Neural Network Model and the backend development.",
-            link: "",
-        });
-        await ctx.db.insert("projects", {
-            title: "book.visitcamsur.com",
-            projectType: "Booking Website",
-            projectFor: "Provincial Government of Camarines Sur",
-            description: "book.visitcamsur.com is the official booking system of visitcamsur.com, my contribution for this project was I was assigned to collaborate with the frontend of the system to produce the necessary features based on the given interface designs. ",
-            link: "book.visitcamsur.com",
-        });
-        await ctx.db.insert("projects", {
-            title: "visitcamsur.com",
-            projectType: "Official Tourism Website",
-            projectFor: "Provincial Government of Camarines Sur",
-            description: "Visitcamsur.com is the official website of the Provincial Government of Camarines Sur to promote the tourism of Camarines Sur. I was assigned to implement different pages and revisions based on the interface designs given.",
-            link: "visitcamsur.com",
-        });
-        await ctx.db.insert("projects", {
-            title: "cwcwake.com",
-            projectType: "Official Website of Camsur Watersports Complex",
-            projectFor: "Provincial Government of Camarines Sur",
-            description: "cwcwake.com is the official website of the CamSur Watersports Complex(CWC). I was assigned to revise different data entries from different pages using FileZilla.",
-            link: "",
-        });
+        const projects = [
+            {
+                title: "Gamification of Academic Programs",
+                projectType: "Virtual Internship",
+                projectFor: "Ateneo de Naga University: College of Computer Studies",
+                description: "Assigned to lead the Front-end Development Team to design and develop a web application for Gamification of Academic Programs. Also engage with the different committees(Back-end, Design Team) to share insights of the project.",
+                link: "" 
+            },
+            {
+                title: "Goldy: An NLP Application Chatbot in English Subject for Primary Education",
+                projectType: "Senior Thesis",
+                projectFor: "Ateneo de Naga University",
+                description: "Goldy is a chatbot designed to help elementary students in their English subject. Implemented an NLP Neural-Network using Python as the main programming language and showcased it as a web application using Flask and TailwindCSS. Assigned to train the Neural Network Model and the backend development.",
+                link: "",
+            },
+            {
+                title: "book.visitcamsur.com",
+                projectType: "Booking Website",
+                projectFor: "Provincial Government of Camarines Sur",
+                description: "book.visitcamsur.com is the official booking system of visitcamsur.com, my contribution for this project was I was assigned to collaborate with the frontend of the system to produce the necessary features based on the given interface designs. ",
+                link: "book.visitcamsur.com",
+
+            },
+            {
+                title: "visitcamsur.com",
+                projectType: "Official Tourism Website",
+                projectFor: "Provincial Government of Camarines Sur",
+                description: "Visitcamsur.com is the official website of the Provincial Government of Camarines Sur to promote the tourism of Camarines Sur. I was assigned to implement different pages and revisions based on the interface designs given.",
+                link: "visitcamsur.com",
+            },
+            {
+                title: "cwcwake.com",
+                projectType: "Official Website of Camsur Watersports Complex",
+                projectFor: "Provincial Government of Camarines Sur",
+                description: "cwcwake.com is the official website of the CamSur Watersports Complex(CWC). I was assigned to revise different data entries from different pages using FileZilla.",
+                link: "cwcwake.com",
+            },
+        ];
+
+        for (const proj of projects) {
+            const exists = await ctx.db
+            .query("projects")
+            .withIndex("byTitle", q =>
+                q
+                .eq("title", proj.title)
+            )
+            .first();
+
+            if (!exists) {
+            await ctx.db.insert("projects", proj);
+            }
+        }
     }
 });
 

@@ -8,10 +8,13 @@ const experiences = useConvexQuery(api.resume.getExperiences);
 
 </script>
 <template>
-    <div class="bg-[#205295] md:h-150 flex flex-col gap-6">
+    <div class="bg-[#205295] md:h-120 flex flex-col gap-6">
+        <div class="absolute my-10">
+            <h1 class="text-xl border rounded-r-full px-6 py-3 bg-white font-extrabold text-sky-700 shadow-[0px_6px_0px_#144272]">EXPERIENCES</h1>
+        </div>
         <div class="h-full flex flex-col gap-12 mx-20">
             <div class="mt-20">
-            <h2 class="text-5xl">Professional Experiences</h2>
+                
             </div>
             <div class="flex gap-12 justify-center">
                 

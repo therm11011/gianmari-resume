@@ -19,7 +19,7 @@ export default defineSchema({
         startDate: v.string(),
         endDate: v.string(),
         description: v.string(),
-    }).index("byInstitution", ["institution"]),
+    }).index("by_unique_education", ["institution", "degree", "startDate"]),
 
     experience: defineTable({
         company: v.string(),
