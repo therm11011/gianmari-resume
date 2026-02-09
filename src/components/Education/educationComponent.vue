@@ -13,7 +13,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="p-10">
+    <div class="">
       
       <div v-if="education.degree !== ''">
           <p>{{ education.degree }}</p>
@@ -22,9 +22,9 @@ defineProps<{
           <!-- <p>{{ education.description }}</p> -->
       </div>
       <div v-else>
-        <br>
         <p>{{ education.institution }}</p>
         <p>{{ education.startDate }} - {{ education.endDate }}</p>
+        <br>
       </div>
     </div>
 </template>

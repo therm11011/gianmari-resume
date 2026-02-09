@@ -10,7 +10,7 @@ import Resume_ReferencesComponent from "./components/Resume_ReferencesComponent.
 </script>
 
 <template>
-    <div class="min-h-screen w-full flex flex-col dark:bg-[#0A2647] dark:text-white">
+    <div class="min-h-screen w-screen flex flex-col dark:bg-[#0A2647] dark:text-white cursor-pointer">
         <Resume_ProfileComponent />
         <Resume_ExperiencesComponent />
         <Resume_EducationComponent />

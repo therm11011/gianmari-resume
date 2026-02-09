@@ -10,33 +10,52 @@ const education = useConvexQuery(api.resume.getEducation);
 </script>
 
 <template>
-    <div class="flex flex-col gap-6 bg-sky-600">
-        <div class="absolute my-10">
+    <div class="w-screen flex flex-col bg-center bg-cover gap-6 bg-[#144272]">
+        <div class="absolute my-10 z-10">
             <h1 class="text-xl border rounded-r-full px-6 py-3 bg-white font-extrabold text-sky-700 shadow-[0px_6px_0px_#144272]">EDUCATION</h1>
         </div>
-        <div class="flex h-150 w-full overflow-hidden">
+        <div class="flex w-full overflow-hidden">
             <div
             v-for="edu in education.data.value"
             :key="edu.degree"
             @click="activeColumn = activeColumn === edu._id ? null : edu._id"
-            class="h-full flex flex-col justify-center items-center text-white transition-all duration-500 ease-in-out cursor-pointer"
+            class="relative h-100 flex md:flex-col justify-center items-center text-white transition-all duration-300 ease-in-out hover:scale-110 "
             :class="[
-                ,
-                // If nothing is hovered, default to 1/3 width
-                activeColumn === null ? 'w-1/3' : 
-                // If this column is hovered, expand, otherwise shrink
-                activeColumn === edu._id ? 'w-3/5 bg-sky-700' : 'w-2/5 bg-sky-600'
-            ]"
+
+                activeColumn === null
+                ? 'flex-1 hover:bg-sky-600'
+                : activeColumn === edu._id
+                ? 'flex-3 bg-sky-700 scale-100'
+                : 'flex-0 overflow-hidden hidden opacity-0',
+
+                edu.fieldOfStudy === 'Junior High School' 
+                ? '' 
+                : edu.fieldOfStudy === 'Senior High School'
+                ? ''
+                : ''
+                ]"
             >
-            <h1 class="text-3xl font-bold transition-all duration-500"
-                :class="activeColumn === edu._id ? '' : ''">
-                {{ edu.fieldOfStudy }}
-            </h1>
-            <p class="mt-4 opacity-0 transition-opacity duration-300"
-                :class="activeColumn === edu._id ? 'opacity-100' : 'opacity-0'">
+            <div class="flex flex-col items-center justify-center gap-4 w-sm py-3 rounded-2xl"
+                 :class="[
+                    activeColumn === null
+                    ? ''
+                    : activeColumn === edu._id
+                    ? ''
+                    : ''
+                 ]">
+                <img src="/assets/icons/orgs/adnu.png" alt="" class="w-20">
+                <h1 class="text-3xl font-bold transition-all duration-100 text-center"
+                    :class="activeColumn === edu._id ? '' : ''">
+                    {{ edu.fieldOfStudy }}
+                </h1>
+            </div>
+            <p class="text-center -mt-15 opacity-0 transition-all duration-100"
+                :class="activeColumn === edu._id ? 'opacity-100 mt-0' : 'opacity-0'">
                 <EducationComponent :education="edu" />
             </p>
+
             </div>
+            
         </div>
     </div>
 </template>
