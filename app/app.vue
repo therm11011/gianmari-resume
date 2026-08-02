@@ -16,7 +16,7 @@ useHead({
 })
 </script>
 
-<template><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d4d7fc5bab83408b8b9c81d22ef5af82"}'></script><!-- End Cloudflare Web Analytics -->
+<template>
   <MarkdownLoading />
   <AppHeader />
   <NuxtPage />
