@@ -20,15 +20,13 @@ export const experiences: Experience[] = [
   },
   {
     id: 2,
-    company: 'Ateneo de Naga University - NOCS',
-    position: 'Volunteer Network / IT Staff',
-    location: 'Naga City, Camarines Sur',
-    startDate: 'January 2024',
-    endDate: 'May 2024',
+    company: 'Advanced World Solutions, Inc.',
+    position: 'Junior R&D Engineer',
+    location: 'Alabang, Muntinlupa',
+    startDate: 'July 2023',
+    endDate: 'September 2023',
     responsibilities: [
-      'Provided technical support to staff and helped resolve software and hardware issues.',
-      'Assisted in implementing software solutions and improving system functionality.',
-      'Worked with team members to identify and address technical challenges.',
+      'Trained in IT fundamentals and introductory Nihongo through the ACTION program.',
     ],
   },
 ]

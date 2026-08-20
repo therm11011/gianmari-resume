@@ -32,6 +32,16 @@ export interface SkillGroup {
     skills: string[]
 }
 
+export interface VolunteerWork {
+    id: number
+    organization: string
+    role: string
+    location: string
+    startDate: string
+    endDate: string
+    responsibilities: string[]
+}
+
 export interface Certificates {
     id: number
     title: string

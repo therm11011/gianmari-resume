@@ -2,6 +2,7 @@
 const navigation = [
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Volunteer Work', href: '#volunteer' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'Certificates', href: '#certificates' },
