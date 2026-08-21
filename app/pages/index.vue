@@ -15,8 +15,6 @@ useSeoMeta({
   ogType: 'website',
 })
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1065785669441750"
-     crossorigin="anonymous"></script>
 <template>
   <main class="bg-zinc-950 text-slate-200">
     <HeroSection />

@@ -19,6 +19,13 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
+      script: [
+        {
+          src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1065785669441750",
+          async: true,
+          crossorigin: 'anonymous',
+        },
+      ],
       title: 'Gian Mari Ramos | Web Developer',
       meta: [
         {
